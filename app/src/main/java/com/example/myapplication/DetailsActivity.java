@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,7 +33,8 @@ public class DetailsActivity extends AppCompatActivity {
         text_time.setText(headlines.getPublishedAt());
         text_detail.setText(headlines.getDescription());
         text_content.setText(headlines.getContent());
+        text_content.setMovementMethod(new ScrollingMovementMethod());
         Picasso.get().load(headlines.getUrlToImage()).into(img_news);
-
+        System.out.println(text_content);
     }
 }
