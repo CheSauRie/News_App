@@ -1,11 +1,21 @@
 package com.example.myapplication.Models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class NewsData {
+public class NewsData implements Serializable {
     private String status;
     private int totalResults;
     private List<Result> results;
+    private String nextPage;
+
+    public String getNextPage() {
+        return nextPage;
+    }
+
+    public void setNextPage(String nextPage) {
+        this.nextPage = nextPage;
+    }
 
     public String getStatus() {
         return status;
