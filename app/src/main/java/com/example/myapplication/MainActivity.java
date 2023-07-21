@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
@@ -14,8 +16,10 @@ import android.widget.Toast;
 
 import com.example.myapplication.Models.NewsApiResponse;
 import com.example.myapplication.Models.NewsHeadLines;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity implements SelectListener, View.OnClickListener {
 
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
     ProgressDialog dialog;
     Button b1,b2,b3,b4,b5,b6,b7;
     SearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +68,29 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
         b7.setOnClickListener(this);
         RequestManager manager = new RequestManager(this);
         manager.getNewsHeadlines(listener, "general", null);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.home) {
+                return true;
+            } else if (itemId == R.id.video) {
+                startActivity(new Intent(getApplicationContext(), VideoActivity.class));
+                finish();
+                return true;
+            } else if (itemId == R.id.favourite) {
+                startActivity(new Intent(getApplicationContext(), FavoriteActivity.class));
+                finish();
+                return true;
+            } else if (itemId == R.id.profile) {
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                finish();
+                return true;
+            }
+            return false;
+        });
     }
     private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
         @Override
