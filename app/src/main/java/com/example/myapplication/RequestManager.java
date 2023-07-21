@@ -50,9 +50,9 @@ public class RequestManager {
         }
     }
 
-    public void getNewsData(OnFetchDataListener listener) {
+    public void getNewsData(OnFetchDataListener listener, String query, String category) {
         CallNewsApi callNewsApi = retrofit_2.create(CallNewsApi.class);
-        Call<NewsData> call = callNewsApi.callNewsData("pub_264113e6eaea74f92b9c4d6c028cc36034a5a", "vi");
+        Call<NewsData> call = callNewsApi.callNewsData("pub_264113e6eaea74f92b9c4d6c028cc36034a5a", "vi", query, category );
         try {
             call.enqueue(new Callback<NewsData>() {
                 @Override
@@ -65,13 +65,37 @@ public class RequestManager {
 
                 @Override
                 public void onFailure(Call<NewsData> call, Throwable t) {
-                    listener.onError("Request Failed");
+                    listener.onError("Request Failed: " + t);
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+    /*public void getNewsDataBySearch(OnFetchDataListener listener, String query) {
+        CallNewsApi callNewsApi = retrofit_2.create(CallNewsApi.class);
+        Call<NewsData> call = callNewsApi.callNewsDataByQuery("pub_264113e6eaea74f92b9c4d6c028cc36034a5a", query, "vi");
+        try {
+            call.enqueue(new Callback<NewsData>() {
+                @Override
+                public void onResponse(Call<NewsData> call, Response<NewsData> response) {
+                    if (!response.isSuccessful()) {
+                        Toast.makeText(context, "Error!!", Toast.LENGTH_SHORT).show();
+                    }
+                    listener.onFetchDataBySearch(response.body().getResults(), response.message());
+                }
+
+                @Override
+                public void onFailure(Call<NewsData> call, Throwable t) {
+                    listener.onError("Request Failed");
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
 
     public RequestManager(Context context) {
         this.context = context;
@@ -89,7 +113,10 @@ public class RequestManager {
         @GET("news")
         Call<NewsData> callNewsData(
                 @Query("apikey") String apikey,
-                @Query("language") String language
+                @Query("language") String language,
+                @Query("q") String query,
+                @Query("category") String category
         );
+
     }
 }

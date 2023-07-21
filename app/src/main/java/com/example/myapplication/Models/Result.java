@@ -8,8 +8,8 @@ import java.util.List;
 public class Result implements Serializable {
     private String title;
     private String link;
-    private String keywords;
-    private String creator;
+    private List<String> keywords;
+    private List<String> creator;
     private String video_url;
     private String description;
     private String content;
@@ -36,19 +36,19 @@ public class Result implements Serializable {
         this.link = link;
     }
 
-    public String getKeywords() {
+    public List<String> getKeywords() {
         return keywords;
     }
 
-    public void setKeywords(String keywords) {
+    public void setKeywords(List<String> keywords) {
         this.keywords = keywords;
     }
 
-    public String getCreator() {
+    public List<String> getCreator() {
         return creator;
     }
 
-    public void setCreator(String creator) {
+    public void setCreator(List<String> creator) {
         this.creator = creator;
     }
 
