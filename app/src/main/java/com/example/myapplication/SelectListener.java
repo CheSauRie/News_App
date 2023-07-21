@@ -1,8 +1,8 @@
 package com.example.myapplication;
 
-import com.example.myapplication.Models.NewsHeadLines;
+import com.example.myapplication.Models.Result;
 
 public interface SelectListener {
-    void OnNewsClicked(NewsHeadLines headLines);
+    void OnNewsClicked(Result headLines);
 
 }

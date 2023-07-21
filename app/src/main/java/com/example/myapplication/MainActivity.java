@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.example.myapplication.Models.NewsApiResponse;
-import com.example.myapplication.Models.NewsHeadLines;
+import com.example.myapplication.Models.NewsData;
+import com.example.myapplication.Models.Result;
 
 import java.util.List;
 
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
         dialog.setTitle("Đang tải tin tức..");
         dialog.show();
         searchView = findViewById(R.id.search_view);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -61,12 +62,14 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
         b6.setOnClickListener(this);
         b7 = findViewById(R.id.btn_7);
         b7.setOnClickListener(this);
+
+
         RequestManager manager = new RequestManager(this);
-        manager.getNewsHeadlines(listener, "general", null);
+        manager.getNewsData(listener);
     }
-    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
+    private final OnFetchDataListener<NewsData> listener = new OnFetchDataListener<NewsData>() {
         @Override
-        public void onFetchData(List<NewsHeadLines> list, String message) {
+        public void onFetchData(List<Result> list, String message) {
             if(list.isEmpty())
             {
                 Toast.makeText(MainActivity.this,"No Data Found",Toast.LENGTH_SHORT).show();
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
         }
     };
     //
-    private void showNews(List<NewsHeadLines> list) {
+    private void showNews(List<Result> list) {
         recyclerView = findViewById(R.id.recycler_main);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this,1));
@@ -93,9 +96,9 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
     }
 
     @Override
-    public void OnNewsClicked(NewsHeadLines headLines) {
+    public void OnNewsClicked(Result result) {
         startActivity(new Intent(MainActivity.this, DetailsActivity.class)
-                .putExtra("data", headLines));
+                .putExtra("data", result));
     }
 
     @Override

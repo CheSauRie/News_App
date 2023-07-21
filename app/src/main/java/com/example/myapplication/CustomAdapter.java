@@ -8,18 +8,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.Models.NewsHeadLines;
+import com.example.myapplication.Models.Result;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     private Context context;
-    private List<NewsHeadLines> headlines;
+    private List<Result> results;
     private SelectListener listener;
-    public CustomAdapter(Context context, List<NewsHeadLines> headlines, SelectListener listener) {
+    public CustomAdapter(Context context, List<Result> results, SelectListener listener) {
         this.context = context;
-        this.headlines = headlines;
+        this.results = results;
         this.listener = listener;
     }
 
@@ -31,23 +31,23 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        holder.text_title.setText((headlines.get(position).getTitle()));
-        holder.text_source.setText(headlines.get(position).getSource().getName());
-        if(headlines.get(position).getUrlToImage() != null)
+        holder.text_title.setText((results.get(position).getTitle()));
+        holder.text_source.setText(results.get(position).getSource_id());
+        if(!results.get(position).getImage_url().contains("null"))
         {
-            Picasso.get().load(headlines.get(position).getUrlToImage()).into(holder.img_headline);
+            Picasso.get().load(results.get(position).getImage_url()).into(holder.img_headline);
         }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.OnNewsClicked(headlines.get(position));
+                listener.OnNewsClicked(results.get(position));
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return headlines.size();
+        return results.size();
     }
 }
