@@ -1,2 +1,6 @@
 # Project exclude paths
+feat-login-signup-view
 /.gradle/
+=======
+/.gradle/
+master
