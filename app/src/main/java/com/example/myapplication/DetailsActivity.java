@@ -34,17 +34,6 @@ public class DetailsActivity extends AppCompatActivity {
         img_news = findViewById(R.id.img_detail_news);
 
 
-        headlines = (NewsHeadLines) getIntent().getSerializableExtra("data");
-
-        text_title.setText(headlines.getTitle());
-        text_author.setText(headlines.getAuthor());
-        text_time.setText(headlines.getPublishedAt());
-        text_detail.setText(headlines.getDescription());
-        text_content.setText(headlines.getContent());
-        text_content.setMovementMethod(new ScrollingMovementMethod());
-        Picasso.get().load(headlines.getUrlToImage()).into(img_news);
-        System.out.println(text_content);
-
         results = (Result) getIntent().getSerializableExtra("data");
 
         text_title.setText(results.getTitle());

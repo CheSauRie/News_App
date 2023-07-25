@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
                 dialog.setTitle("Đang tải tin tức");
                 dialog.show();
                 RequestManager manager = new RequestManager(MainActivity.this);
-                manager.getNewsHeadlines(listener, "general", s);
+                manager.getNewsData(listener, s, null);
                 return true;
             }
 
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
 
 
         RequestManager manager = new RequestManager(this);
-        manager.getNewsHeadlines(listener, "general", null);
+        manager.getNewsData(listener, null, null);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.home);
@@ -98,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
             }
             return false;
         });
-        manager.getNewsData(listener);
     }
     private final OnFetchDataListener<NewsData> listener = new OnFetchDataListener<NewsData>() {
         @Override
@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
 
         @Override
         public void onError(String message) {
+            Log.d("err", "onError: " + message);
             Toast.makeText(MainActivity.this,"Đã có lỗi xảy ra", Toast.LENGTH_SHORT).show();
         }
     };
@@ -141,6 +142,6 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
         dialog.setTitle("Đang tải tin tức");
         dialog.show();
         RequestManager manager = new RequestManager(this);
-        manager.getNewsHeadlines(listener, category, null);
+        manager.getNewsData(listener, null, category);
     }
 }
