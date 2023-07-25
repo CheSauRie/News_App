@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -36,6 +38,31 @@ public class ProfileActivity extends AppCompatActivity {
                 return true;
             }
             return false;
+        });
+
+        Button btn_weather = findViewById(R.id.start_weather_btn);
+        Button btn_lotto = findViewById(R.id.start_lotto_btn);
+        Button btn_gold_price = findViewById(R.id.start_gp_btn);
+
+        btn_weather.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               startActivity(new Intent(ProfileActivity.this, WeatherActivity.class));
+           }
+        });
+
+        btn_lotto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this, LottoActivity.class));
+            }
+        });
+
+        btn_gold_price.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this, GoldPriceActivity.class));
+            }
         });
     }
 }
