@@ -3,10 +3,12 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,6 +21,8 @@ public class DetailsActivity extends AppCompatActivity {
     Result results;
     TextView text_title, text_author, text_time, text_detail, text_content;
     ImageView img_news;
+    Button button;
+    TextToSpeech textToSpeech;
     WebView webView;
     ProgressBar loader;
     @Override
@@ -43,5 +47,25 @@ public class DetailsActivity extends AppCompatActivity {
         Picasso.get().load(results.getImage_url()).into(img_news);
         text_content.setText(results.getContent());
 
+        /*
+        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR){
+                    textToSpeech.setLanguage(Locale)
+                }
+            }
+        });
+        button = findViewById(R.id.textToSpeech);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                speakOut();
+            }
+        });
+
+         */
     }
+
+
 }

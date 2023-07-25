@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.myapplication.Models.LoteryResponse;
 import com.example.myapplication.Models.NewsApiResponse;
 import com.example.myapplication.Models.NewsData;
 
@@ -26,7 +27,10 @@ public class RequestManager {
             .baseUrl("https://newsdata.io/api/1/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-
+    Retrofit retrofit_lotery = new Retrofit.Builder()
+            .baseUrl("https://api-xsmb.cyclic.app/api/v1")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
     public void getNewsHeadlines(OnFetchDataListener listener, String category, String query) {
         CallNewsApi callNewsApi = retrofit.create(CallNewsApi.class);
         Call<NewsApiResponse> call = callNewsApi.callHeadlines("us", category, query, context.getString(R.string.api_key));
@@ -117,6 +121,10 @@ public class RequestManager {
                 @Query("q") String query,
                 @Query("category") String category
         );
+    }
 
+    public interface CallLotery {
+        @GET("/")
+        Call<LoteryResponse> callLoteryData();
     }
 }

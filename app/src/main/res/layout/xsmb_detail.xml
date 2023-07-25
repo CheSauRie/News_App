@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:text="Kết Quả Xổ Số Hôm Nay"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:id="@+id/ngayXoso"
+            android:text="25-07-2023"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="Chúc bạn may mắn"/>
+    </LinearLayout>
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:showDividers="none"
+        android:stretchColumns="*"
+        android:layout_centerInParent="true">
+
+        <TableRow>
+
+            <TextView
+                android:text="Giải"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_span="6"
+                android:text="Miền Bắc"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="ĐB"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiDB"
+                android:layout_span="6"
+                android:gravity="center"
+                android:text="ĐB"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="G.1"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiNhat"
+                android:layout_span="6"
+                android:gravity="center"
+                android:text="Giải Nhất"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="G.2"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiNhi1"
+                android:layout_span="2"
+                android:gravity="center"
+                android:text="Giải Nhì"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiNhi2"
+                android:layout_span="2"
+                android:gravity="center"
+                android:text="Giải Nhì"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="G.3"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiBa1"
+                android:layout_span="1"
+                android:gravity="center"
+                android:text="Giải Ba"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiBa2"
+                android:layout_span="2"
+                android:gravity="center"
+                android:text="Giải Ba"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiBa3"
+                android:layout_span="2"
+                android:gravity="center"
+                android:text="Giải Ba"
+                android:textSize="24sp" />
+
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text=""
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiBa4"
+                android:gravity="center"
+                android:text="Giải Ba"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiBa5"
+                android:layout_span="2"
+                android:gravity="center"
+                android:text="Giải Ba"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiBa6"
+                android:gravity="center"
+                android:text="Giải Ba"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="G.4"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiBon1"
+                android:gravity="center"
+                android:text="Giải Bốn"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiBon2"
+                android:gravity="center"
+                android:text="Giải Bốn"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiBon3"
+                android:gravity="center"
+                android:text="Giải Bốn"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiBon4"
+                android:gravity="center"
+                android:text="Giải Bốn"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="G.5"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiNam1"
+                android:gravity="center"
+                android:text="Giải 5"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiNam2"
+                android:layout_span="2"
+                android:gravity="center"
+                android:text="Giải 5"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiNam3"
+                android:gravity="center"
+                android:text="Giải 5"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text=""
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiNam4"
+                android:gravity="center"
+                android:text="Giải 5"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiNam5"
+                android:layout_span="2"
+                android:gravity="center"
+                android:text="Giải 5"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiNam6"
+                android:gravity="center"
+                android:text="Giải 5"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="G.6"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiSau1"
+                android:gravity="center"
+                android:text="Giải 6"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiSau2"
+                android:layout_span="2"
+                android:gravity="center"
+                android:text="Giải 6"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiSau3"
+                android:gravity="center"
+                android:text="Giải 6"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="G.7"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiBay1"
+                android:gravity="center"
+                android:text="Giải 7"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiBay2"
+                android:gravity="center"
+                android:text="Giải 7"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiBay3"
+                android:gravity="center"
+                android:text="Giải 7"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/giaiBay4"
+                android:gravity="center"
+                android:text="Giải 7"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+    </TableLayout>
+</RelativeLayout>
