@@ -10,7 +10,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/primary"
+        android:background="@drawable/header"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,11 +82,12 @@
         app:layout_constraintVertical_bias="0.163" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_marginBottom="206dp"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,9 +105,58 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
-            android:textColor="@color/primary"
-            android:text="Cảm giác như 36" />
+            android:text="Cảm giác như 36"
+            android:textColor="@color/primary" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="339dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20sp"
+        android:background="@drawable/gradient"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:srcCompat="@drawable/baseline_water_drop_16" />
+
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5sp"
+            android:text="66%"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100sp"
+            app:srcCompat="@drawable/baseline_air_16" />
+
+        <TextView
+            android:id="@+id/atm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5sp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="1000" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

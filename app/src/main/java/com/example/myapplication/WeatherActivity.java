@@ -24,11 +24,11 @@ public class WeatherActivity extends AppCompatActivity {
 
     TextView tvTemp;
     TextView tvStatus;
-
     TextView tvCityName;
-
     TextView tvMaxMinTemp;
     TextView tvFeelsLikeTemp;
+    TextView tvHumidity;
+    TextView tvAtm;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,8 @@ public class WeatherActivity extends AppCompatActivity {
         tvCityName = findViewById(R.id.cityName);
         tvMaxMinTemp = findViewById(R.id.maxMinTemp);
         tvFeelsLikeTemp = findViewById(R.id.feelsLikeTemp);
-
+        tvHumidity = findViewById(R.id.humidity);
+        tvAtm = findViewById(R.id.atm);
         fetchWeather("Hanoi");
     }
 
@@ -67,6 +68,9 @@ public class WeatherActivity extends AppCompatActivity {
                     tvCityName.setText(weatherResponse.getName());
                     tvMaxMinTemp.setText(mainWeather.getTemp_min() + " / " + mainWeather.getTemp_max());
                     tvFeelsLikeTemp.setText("Cảm giác như: " + mainWeather.getFeels_like() + "\u2103");
+                    tvHumidity.setText(mainWeather.getHumidity() +
+                            "%");
+                    tvAtm.setText(mainWeather.getPressure() + " atm");
                 } else {
                     Log.d("LottoActivity", "Response not successful: " + response.code());
                 }

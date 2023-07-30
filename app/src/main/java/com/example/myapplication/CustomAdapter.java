@@ -36,7 +36,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
         holder.text_source.setText(results.get(position).getSource_id());
         if(!results.get(position).getImage_url().contains("null"))
         {
-            Picasso.get().load(results.get(position).getImage_url()).into(holder.img_headline);
+            //Picasso.get().load(results.get(position).getImage_url()).into(holder.img_headline);
         }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
