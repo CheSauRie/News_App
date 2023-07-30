@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    app:backgroundTint="@null"
     tools:context=".MainActivity">
 
     <FrameLayout
@@ -34,7 +35,8 @@
                         android:layout_margin="6dp"
                         android:padding="6dp"
                         android:text="business"
-                        android:textSize="12sp">
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/primary">
 
                     </Button>
 
@@ -45,7 +47,8 @@
                         android:layout_margin="6dp"
                         android:padding="6dp"
                         android:text="entertainment"
-                        android:textSize="12sp">
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/primary">
 
                     </Button>
 
@@ -56,7 +59,8 @@
                         android:layout_margin="6dp"
                         android:padding="6dp"
                         android:text="top"
-                        android:textSize="12sp">
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/primary">
 
                     </Button>
 
@@ -67,7 +71,8 @@
                         android:layout_margin="6dp"
                         android:padding="6dp"
                         android:text="health"
-                        android:textSize="12sp">
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/primary">
 
                     </Button>
 
@@ -78,7 +83,8 @@
                         android:layout_margin="6dp"
                         android:padding="6dp"
                         android:text="science"
-                        android:textSize="12sp">
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/primary">
 
                     </Button>
 
@@ -89,7 +95,8 @@
                         android:layout_margin="6dp"
                         android:padding="6dp"
                         android:text="sports"
-                        android:textSize="12sp">
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/primary">
 
                     </Button>
 
@@ -100,7 +107,8 @@
                         android:layout_margin="6dp"
                         android:padding="6dp"
                         android:text="technology"
-                        android:textSize="12sp">
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/primary">
 
                     </Button>
                 </LinearLayout>

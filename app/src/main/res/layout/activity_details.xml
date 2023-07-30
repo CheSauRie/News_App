@@ -69,20 +69,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textColor="@color/black"
-            android:textSize="22sp">
-
+            android:textSize="22sp"
+            android:padding="10dp"
+            android:justificationMode="inter_word">
         </TextView>
 
-        <TextView
-            android:id="@+id/text_detail_content"
-            android:layout_width="match_parent"
-            android:layout_height="289dp"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:scrollbars="vertical">
-        </TextView>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/text_detail_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginTop="8dp"
+                android:scrollbars="vertical"
+                android:layout_gravity="center"
+                android:justificationMode="inter_word"
+                android:textColor="@color/black"
+                android:textSize="20sp"></TextView>
+        </LinearLayout>
 </ScrollView>
 
 
