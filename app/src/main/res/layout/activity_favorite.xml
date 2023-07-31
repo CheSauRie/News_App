@@ -23,8 +23,9 @@
 
     <include
         layout="@layout/bottom_nav"
-        android:layout_width="match_parent"
+        android:layout_width="389dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:visibility="visible" />
 
 </LinearLayout>
