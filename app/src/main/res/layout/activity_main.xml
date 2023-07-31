@@ -5,17 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    app:backgroundTint="@null"
     tools:context=".MainActivity">
 
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="669dp">
+        android:layout_height="665dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="774dp"
             android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_margin="14dp"
+                app:cardElevation="0dp">
+
+                <SearchView
+                    android:id="@+id/search_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="50sp"
+                    android:background="@drawable/search_box"
+                    android:iconifiedByDefault="false"
+                    android:queryHint="Tìm kiếm tin...">
+
+                </SearchView>
+            </androidx.cardview.widget.CardView>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -29,103 +47,110 @@
 
                     <Button
                         android:id="@+id/btn_1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="120sp"
                         android:layout_height="wrap_content"
                         android:layout_margin="6dp"
+                        android:background="@drawable/gradient"
                         android:padding="6dp"
-                        android:text="business"
-                        android:textSize="12sp">
+                        android:text="Kinh tế"
+                        android:textSize="15sp"
+                        app:backgroundTint="@null">
 
                     </Button>
 
                     <Button
                         android:id="@+id/btn_2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="120sp"
                         android:layout_height="wrap_content"
                         android:layout_margin="6dp"
+                        android:background="@drawable/gradient"
                         android:padding="6dp"
-                        android:text="entertainment"
-                        android:textSize="12sp">
-
-                    </Button>
-
-                    <Button
-                        android:id="@+id/btn_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="6dp"
-                        android:padding="6dp"
-                        android:text="top"
-                        android:textSize="12sp">
+                        android:text="Giải trí"
+                        android:textSize="15sp"
+                        app:backgroundTint="@null">
 
                     </Button>
 
                     <Button
                         android:id="@+id/btn_4"
-                        android:layout_width="wrap_content"
+                        android:layout_width="120sp"
                         android:layout_height="wrap_content"
                         android:layout_margin="6dp"
+                        android:background="@drawable/gradient"
                         android:padding="6dp"
-                        android:text="health"
-                        android:textSize="12sp">
+                        android:text="Sức khỏe"
+                        android:textSize="15sp"
+                        app:backgroundTint="@null">
+
+                    </Button>
+
+                    <Button
+                        android:id="@+id/btn_3"
+                        android:layout_width="120sp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="6dp"
+                        android:background="@drawable/gradient"
+                        android:padding="6dp"
+                        android:text="Tin nóng"
+                        android:textSize="15sp"
+                        app:backgroundTint="@null">
 
                     </Button>
 
                     <Button
                         android:id="@+id/btn_5"
-                        android:layout_width="wrap_content"
+                        android:layout_width="120sp"
                         android:layout_height="wrap_content"
                         android:layout_margin="6dp"
                         android:padding="6dp"
-                        android:text="science"
-                        android:textSize="12sp">
+                        android:text="Khoa học"
+                        android:textSize="15sp"
+                        app:backgroundTint="@color/primary">
 
                     </Button>
 
                     <Button
                         android:id="@+id/btn_6"
-                        android:layout_width="wrap_content"
+                        android:layout_width="120sp"
                         android:layout_height="wrap_content"
                         android:layout_margin="6dp"
+                        android:background="@drawable/gradient"
                         android:padding="6dp"
-                        android:text="sports"
-                        android:textSize="12sp">
+                        android:text="Thể thao"
+                        android:textSize="15sp"
+                        app:backgroundTint="@null">
 
                     </Button>
 
                     <Button
                         android:id="@+id/btn_7"
-                        android:layout_width="wrap_content"
+                        android:layout_width="120sp"
                         android:layout_height="wrap_content"
                         android:layout_margin="6dp"
+                        android:background="@drawable/gradient"
                         android:padding="6dp"
-                        android:text="technology"
-                        android:textSize="12sp">
+                        android:text="Công nghệ"
+                        android:textSize="15sp"
+                        app:backgroundTint="@null">
 
                     </Button>
+
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <androidx.cardview.widget.CardView
+            <TextView
+                android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="14dp"
-                app:cardElevation="8dp">
-
-                <SearchView
-                    android:id="@+id/search_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:iconifiedByDefault="false"
-                    android:queryHint="Search News...">
-
-                </SearchView>
-            </androidx.cardview.widget.CardView>
+                android:padding="10sp"
+                android:text="Tin mới nhất"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_main"
                 android:layout_width="match_parent"
-                android:layout_height="478dp"
+                android:layout_height="486dp"
                 android:layout_margin="8dp">
 
             </androidx.recyclerview.widget.RecyclerView>
@@ -135,8 +160,9 @@
 
     <include
         layout="@layout/bottom_nav"
-        android:layout_width="match_parent"
+        android:layout_width="389dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:visibility="visible" />
 
 </LinearLayout>
