@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
     RecyclerView recyclerView;
     CustomAdapter adapter;
     ProgressDialog dialog;
-    Button b1,b2,b3,b4,b5,b6,b7;
+    Button b1, b2, b3, b4, b5, b6, b7;
     SearchView searchView;
 
     @Override
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
                 dialog.setTitle("Đang tải tin tức");
                 dialog.show();
                 RequestManager manager = new RequestManager(MainActivity.this);
-                manager.getNewsData(listener, s, null);
+                manager.getNewsData(listener, s, null, null);
                 return true;
             }
 
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
 
 
         RequestManager manager = new RequestManager(this);
-        manager.getNewsData(listener, null, null);
+        manager.getNewsData(listener, null, null, "vnexpress,danviet,nhipsongkinhdoanh,datviet,docbao");
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.home);
@@ -100,15 +100,13 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
             return false;
         });
     }
+
     private final OnFetchDataListener<NewsData> listener = new OnFetchDataListener<NewsData>() {
         @Override
         public void onFetchData(List<Result> list, String message) {
-            if(list.isEmpty())
-            {
-                Toast.makeText(MainActivity.this,"No Data Found",Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
+            if (list.isEmpty()) {
+                Toast.makeText(MainActivity.this, "No Data Found", Toast.LENGTH_SHORT).show();
+            } else {
                 showNews(list);
                 dialog.dismiss();
             }
@@ -117,14 +115,15 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
         @Override
         public void onError(String message) {
             Log.d("err", "onError: " + message);
-            Toast.makeText(MainActivity.this,"Đã có lỗi xảy ra", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Đã có lỗi xảy ra", Toast.LENGTH_SHORT).show();
         }
     };
+
     //
     private void showNews(List<Result> list) {
         recyclerView = findViewById(R.id.recycler_main);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,1));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
         adapter = new CustomAdapter(this, list, this);
         recyclerView.setAdapter(adapter);
     }
@@ -138,10 +137,27 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
     @Override
     public void onClick(View view) {
         Button button = (Button) view;
-        String category = button.getText().toString();
+        String category_vi = button.getText().toString();
+        String category = "";
+        if (category_vi.equals("Kinh tế")) {
+            category = "business";
+        } else if (category_vi.equals("Giải trí")) {
+            category = "entertainment";
+        } else if (category_vi.equals("Sức khỏe")) {
+            category = "health";
+        } else if (category_vi.equals("Tin nóng")) {
+            category = "top";
+        } else if (category_vi.equals("Khoa học")) {
+            category = "science";
+        } else if (category_vi.equals("Thể thao")) {
+            category = "sports";
+        } else if (category_vi.equals("Công nghệ")) {
+            category = "technology";
+        }
+        Log.d("MainActivity", "onClick: " + category + category_vi);
         dialog.setTitle("Đang tải tin tức");
         dialog.show();
         RequestManager manager = new RequestManager(this);
-        manager.getNewsData(listener, null, category);
+        manager.getNewsData(listener, null, category, null);
     }
 }

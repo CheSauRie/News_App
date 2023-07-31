@@ -54,9 +54,9 @@ public class RequestManager {
         }
     }
 
-    public void getNewsData(OnFetchDataListener listener, String query, String category) {
+    public void getNewsData(OnFetchDataListener listener, String query, String category, String domain) {
         CallNewsApi callNewsApi = retrofit_2.create(CallNewsApi.class);
-        Call<NewsData> call = callNewsApi.callNewsData("pub_264113e6eaea74f92b9c4d6c028cc36034a5a", "vi", query, category );
+        Call<NewsData> call = callNewsApi.callNewsData("pub_264113e6eaea74f92b9c4d6c028cc36034a5a", "vi", query, category, domain );
         try {
             call.enqueue(new Callback<NewsData>() {
                 @Override
@@ -97,7 +97,8 @@ public class RequestManager {
                 @Query("apikey") String apikey,
                 @Query("language") String language,
                 @Query("q") String query,
-                @Query("category") String category
+                @Query("category") String category,
+                @Query("domain") String domain
         );
     }
 
