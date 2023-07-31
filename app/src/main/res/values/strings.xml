@@ -3,4 +3,10 @@
     <string name="api_key">adc541d09fb64a3ea57b7f9004d338be</string>
     <string name="title_activity_video">VideoActivity</string>
     <string name="title_activity_video_acitivity">VideoAcitivity</string>
+    <string name="not_yet_registered">Not yet registered? Signup Now</string>
+    <string name="confirmation_password">confirmation password</string>
+    <string name="password">password</string>
+    <string name="username">username</string>
+    <string name="signup">Signup</string>
+    <string name="login">Login</string>
 </resources>
