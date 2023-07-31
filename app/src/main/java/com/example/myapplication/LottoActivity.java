@@ -20,13 +20,14 @@ public class LottoActivity extends AppCompatActivity {
 
     TextView giaiDB, giaiNhat, giaiNhi1, giaiNhi2, giaiBa1, giaiBa2, giaiBa3, giaiBa4, giaiBa5, giaiBa6,
             giaiBon1, giaiBon2, giaiBon3, giaiBon4, giaiNam1,giaiNam2,giaiNam3,giaiNam4,giaiNam5,giaiNam6,
-            giaiSau1, giaiSau2, giaiSau3, giaiBay1, giaiBay2, giaiBay3, giaiBay4;
+            giaiSau1, giaiSau2, giaiSau3, giaiBay1, giaiBay2, giaiBay3, giaiBay4, date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lotto);
         callApi();
+        date = findViewById(R.id.ngayXoso);
         giaiNhat = findViewById(R.id.giaiNhat);
         giaiDB = findViewById(R.id.giaiDB);
         giaiNhi1 = findViewById(R.id.giaiNhi1);
@@ -90,6 +91,8 @@ public class LottoActivity extends AppCompatActivity {
                         String g7_1 = response.body().getResults().getG7().get(1);
                         String g7_2 = response.body().getResults().getG7().get(2);
                         String g7_3 = response.body().getResults().getG7().get(3);
+                        String time = response.body().getTime();
+                        date.setText(time);
                         giaiDB.setText(db);
                         giaiNhat.setText(g1);
                         giaiNhi1.setText(g2_0);
