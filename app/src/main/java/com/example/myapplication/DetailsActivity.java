@@ -36,6 +36,7 @@ public class DetailsActivity extends AppCompatActivity {
     ProgressBar loader;
     MediaPlayer mediaPlayer = new MediaPlayer();
     String ttsUrl;
+    boolean isTtsUrlReady = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,11 +62,18 @@ public class DetailsActivity extends AppCompatActivity {
         ttsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ttsUrl != null) {
+                Log.d("DetailsActivity", "onClick: " + ttsUrl);
+                if (isTtsUrlReady) {
                     try {
                         mediaPlayer.setDataSource(ttsUrl);
-                        mediaPlayer.prepare();
-                        mediaPlayer.start();
+                        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                            @Override
+                            public void onPrepared(MediaPlayer mp) {
+                                Log.d("DetailsActivity", "onPrepared: " + "Dã chuẩn bị xong");
+                                mediaPlayer.start();
+                            }
+                        });
+                        mediaPlayer.prepareAsync();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -76,7 +84,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void callApiTts(String contentTTS) {
-        ApiService.retrofit_tts.postTextToSpeech(contentTTS, "XQbk0C0RRS6RkaZTc6ejqrgMRszfCEfE", "banmai").enqueue(new Callback<TtsResponse>() {
+        ApiService.retrofit_tts.postTextToSpeech(contentTTS, "btyG4uVZk4ppdxpKx1zHVR1ms3Z4UTep", "banmai").enqueue(new Callback<TtsResponse>() {
 
             @Override
             public void onResponse(Call<TtsResponse> call, Response<TtsResponse> response) {
@@ -84,7 +92,7 @@ public class DetailsActivity extends AppCompatActivity {
                     TtsResponse ttsResponse = response.body();
                     if (ttsResponse != null) {
                         ttsUrl = response.body().getAsync();
-                        //MediaPlayer mediaPlayer = new MediaPlayer();
+                        isTtsUrlReady = true;
 
                         Log.d("DetailsActivity", "onResponse: " + response.body().toString());
                     } else {
@@ -108,6 +116,7 @@ public class DetailsActivity extends AppCompatActivity {
         if (mediaPlayer != null) {
             mediaPlayer.release();
             mediaPlayer = null;
+            isTtsUrlReady = false;
         }
     }
 }
