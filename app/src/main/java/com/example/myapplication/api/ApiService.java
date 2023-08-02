@@ -1,5 +1,6 @@
 package com.example.myapplication.api;
 
+import com.example.myapplication.Models.CrawlNewsData;
 import com.example.myapplication.Models.LoteryResponse;
 import com.example.myapplication.Models.MainWeather;
 import com.example.myapplication.Models.TextRequestBody;
@@ -25,6 +26,11 @@ public interface ApiService {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService.class);
+    ApiService retrofit_crawl_news = new Retrofit.Builder() //192.168.232.2
+            .baseUrl("http://192.168.232.2:8085/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiService.class);
     @GET("api/v1/")
     Call<LoteryResponse> callLoteryResponse();
     @GET("data/2.5/weather")
@@ -38,5 +44,9 @@ public interface ApiService {
             @Body String text,
             @Query("api_key") String api_key,
             @Query("voice") String voice
+    );
+    @GET("scraper")
+    Call<CrawlNewsData> crawlNewsData(
+            @Query("url") String url
     );
 }

@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.myapplication.Models.CrawlNewsData;
 import com.example.myapplication.Models.LoteryResponse;
 import com.example.myapplication.Models.NewsHeadLines;
 import com.example.myapplication.Models.Result;
@@ -37,6 +38,7 @@ public class DetailsActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer = new MediaPlayer();
     String ttsUrl;
     boolean isTtsUrlReady = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +58,24 @@ public class DetailsActivity extends AppCompatActivity {
         text_author.setText(results.getSource_id());
         text_time.setText(results.getPubDate());
         text_detail.setText(results.getDescription());
-        Picasso.get().load(results.getImage_url()).into(img_news);
+
+        if (results.getImage_url() != null) {
+            String a = results.getImage_url();
+            if (a.contains("http://") || a.contains("https://")) {
+                // Log.d("CustomAdapter", "onBindViewHolder: " + a);
+                Picasso.get()
+                        .load(a)
+                        .placeholder(R.drawable.un_available)
+                        .error(R.drawable.un_available)
+                        .into(img_news);
+            } else {
+                String b = "http:" + a;
+                Picasso.get().load(b).into(img_news);
+            }
+        } else if (results.getImage_url() == null) {
+            callApiImg(results.getLink());
+        }
+
         text_content.setText(results.getContent());
         String contentTts = results.getContent();
         ttsButton.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +100,45 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
         callApiTts(contentTts);
+
+    }
+
+    private void callApiImg(String url) {
+        ApiService.retrofit_crawl_news.crawlNewsData(url)
+                .enqueue(new Callback<CrawlNewsData>() {
+                    @Override
+                    public void onResponse(Call<CrawlNewsData> call, Response<CrawlNewsData> response) {
+                        Log.d("CustomAdapter", "onBindViewHolder: " + "Dda vao day vao on Respone");
+                        if (response.isSuccessful()) {
+                            CrawlNewsData crawlNewsData = response.body();
+                            if (crawlNewsData != null) {
+                                if (response.body().getImageUrl().get(0) != null) {
+                                    if (response.body().getImageUrl().get(0).contains("http://") || response.body().getImageUrl().get(0).contains("https://")) {
+                                        Picasso.get()
+                                                .load(response.body().getImageUrl().get(0))
+                                                .placeholder(R.drawable.un_available)
+                                                .error(R.drawable.un_available)
+                                                .into(img_news);
+                                    } else {
+                                        String b = "http:" + response.body().getImageUrl().get(0);
+                                        Picasso.get().load(b).into(img_news);
+                                    }
+                                }
+                                Log.d("CustomAdapter", "onResponse: " + response.body().toString());
+                            } else {
+                                Log.d("CustomAdapter", "Response body is null");
+                            }
+                        } else {
+                            Log.d("DetailsActivity", "Response not successful: " + response.code());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CrawlNewsData> call, Throwable t) {
+                        Log.e("CustomAdapter", "API call failed: " + t.getMessage());
+                        t.printStackTrace();
+                    }
+                });
     }
 
     private void callApiTts(String contentTTS) {
@@ -102,17 +160,16 @@ public class DetailsActivity extends AppCompatActivity {
                     Log.d("DetailsActivity", "Response not successful: " + response.code());
                 }
             }
-
             @Override
             public void onFailure(Call<TtsResponse> call, Throwable t) {
 
             }
         });
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Dừng và giải phóng MediaPlayer khi activity bị hủy bỏ
         if (mediaPlayer != null) {
             mediaPlayer.release();
             mediaPlayer = null;
