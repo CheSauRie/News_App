@@ -85,8 +85,7 @@ public class Result implements Serializable {
     }
 
     public String getImage_url() {
-        Log.d("Test", "getImg_url: " + "https:" + image_url);
-        return "https:" + image_url;
+        return image_url;
     }
 
     public void setImage_url(String image_url) {

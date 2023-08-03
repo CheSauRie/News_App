@@ -19,6 +19,17 @@
         android:layout_gravity="center_vertical"
         android:padding="5sp"
         android:weightSum="3">
+      <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="40dp"
+          android:id="@+id/img_headline"
+
+          android:layout_weight="1"
+          android:scaleType="centerCrop"
+          android:src="@drawable/un_available"
+          >
+
+      </ImageView>
         <TextView
             android:id="@+id/text_source"
             android:layout_width="match_parent"
