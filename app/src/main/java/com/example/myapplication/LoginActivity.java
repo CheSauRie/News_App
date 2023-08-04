@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,8 +28,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
-    String token= "";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,14 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     void CallLoginApi(String email, String password) {
         LoginRequest dataObject = new LoginRequest(email,password);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://25bc-42-119-181-197.ngrok-free.app")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        ApiService apiService = retrofit.create(ApiService.class);
-        Call<LoginResponse> call = apiService.postLoginData(dataObject);
+        Call<LoginResponse> call = ApiService.retrofit_backend.postLoginData(dataObject);
 
         call.enqueue(new Callback<LoginResponse>() {
             @Override
@@ -68,7 +60,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     LoginResponse loginResponse = response.body();
                     assert loginResponse != null;
-                    token = loginResponse.getToken();
+                    SharedPreferences preferences = getSharedPreferences("Auth", MODE_PRIVATE);
+                    preferences.edit().putString("accessToken", loginResponse.getToken()).apply();
                     startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                 } else {
                     Log.d("callAPi", "error" + response.code());

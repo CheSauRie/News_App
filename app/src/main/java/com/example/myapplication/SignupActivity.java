@@ -54,14 +54,7 @@ public class SignupActivity extends AppCompatActivity {
     }
     void CallLoginApi(String name, String email, String password) {
         SignupRequest dataObject = new SignupRequest(name,email,password);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://25bc-42-119-181-197.ngrok-free.app")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        ApiService apiService = retrofit.create(ApiService.class);
-        Call<SignupResponse> call = apiService.postSignupData(dataObject);
+        Call<SignupResponse> call = ApiService.retrofit_backend.postSignupData(dataObject);
 
         call.enqueue(new Callback<SignupResponse>() {
             @Override
