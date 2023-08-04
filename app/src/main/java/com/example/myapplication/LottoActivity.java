@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ public class LottoActivity extends AppCompatActivity {
             giaiBon1, giaiBon2, giaiBon3, giaiBon4, giaiNam1,giaiNam2,giaiNam3,giaiNam4,giaiNam5,giaiNam6,
             giaiSau1, giaiSau2, giaiSau3, giaiBay1, giaiBay2, giaiBay3, giaiBay4, date;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

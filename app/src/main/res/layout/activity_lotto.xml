@@ -1,107 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="70dp"
+        android:background="@drawable/header"
+        android:gravity="center">
+
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/cityName"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="Kết Quả Xổ Số Hôm Nay"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:id="@+id/ngayXoso"
-            android:text="25-07-2023"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:text="Chúc bạn may mắn"/>
+            android:layout_gravity="center"
+            android:text="Xổ số hôm nay"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:showDividers="none"
-        android:stretchColumns="*"
-        android:layout_centerInParent="true">
+    <LinearLayout
+        android:layout_width="389dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="30sp"
+        android:background="@drawable/gradient">
 
-        <TableRow>
+        <TextView
+            android:id="@+id/ngayXoso"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Miền Bắc"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="399dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5sp"
+        android:divider="@color/grey"
+        android:gravity="center"
+        android:showDividers="middle"
+        android:stretchColumns="*">
+
+        <TableRow >
 
             <TextView
+                android:layout_gravity="center"
                 android:text="Giải"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_gravity="center"
                 android:layout_span="6"
                 android:text="Miền Bắc"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:background="@color/smoke"
+            android:minHeight="45dp">
 
             <TextView
                 android:text="ĐB"
-                android:textSize="24sp" />
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:id="@+id/giaiDB"
+                android:layout_height="match_parent"
                 android:layout_span="6"
                 android:gravity="center"
                 android:text="ĐB"
-                android:textSize="24sp" />
+                android:textColor="@color/primary"
+                android:textSize="24sp"
+                android:textStyle="bold" />
         </TableRow>
 
-        <TableRow>
+        <TableRow  android:minHeight="45dp">
 
             <TextView
                 android:text="G.1"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:id="@+id/giaiNhat"
+                android:layout_height="match_parent"
                 android:layout_span="6"
                 android:gravity="center"
                 android:text="Giải Nhất"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:background="@color/smoke"
+            android:minHeight="45dp">
 
             <TextView
                 android:text="G.2"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:id="@+id/giaiNhi1"
+                android:layout_height="match_parent"
                 android:layout_span="2"
                 android:gravity="center"
                 android:text="Giải Nhì"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/giaiNhi2"
+                android:layout_height="match_parent"
                 android:layout_span="2"
                 android:gravity="center"
                 android:text="Giải Nhì"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:minHeight="45dp">
 
             <TextView
+                android:layout_width="58dp"
                 android:text="G.3"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:id="@+id/giaiBa1"
+                android:layout_height="match_parent"
                 android:layout_span="1"
                 android:gravity="center"
                 android:text="Giải Ba"
@@ -109,6 +160,7 @@
 
             <TextView
                 android:id="@+id/giaiBa2"
+                android:layout_height="match_parent"
                 android:layout_span="2"
                 android:gravity="center"
                 android:text="Giải Ba"
@@ -116,7 +168,8 @@
 
             <TextView
                 android:id="@+id/giaiBa3"
-                android:layout_span="2"
+                android:layout_height="match_parent"
+                android:layout_span="1"
                 android:gravity="center"
                 android:text="Giải Ba"
                 android:textSize="24sp" />
@@ -124,20 +177,25 @@
 
         </TableRow>
 
-        <TableRow>
+        <TableRow  android:minHeight="45dp">
 
             <TextView
                 android:text=""
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:layout_gravity="center"
+                />
 
             <TextView
                 android:id="@+id/giaiBa4"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải Ba"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/giaiBa5"
+                android:layout_width="178dp"
+                android:layout_height="match_parent"
                 android:layout_span="2"
                 android:gravity="center"
                 android:text="Giải Ba"
@@ -145,56 +203,67 @@
 
             <TextView
                 android:id="@+id/giaiBa6"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải Ba"
                 android:textSize="24sp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:background="@color/smoke"
+            android:minHeight="45dp">
 
             <TextView
                 android:text="G.4"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:id="@+id/giaiBon1"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải Bốn"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/giaiBon2"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải Bốn"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/giaiBon3"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải Bốn"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/giaiBon4"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải Bốn"
                 android:textSize="24sp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:minHeight="45dp">
 
             <TextView
                 android:text="G.5"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:id="@+id/giaiNam1"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải 5"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/giaiNam2"
+                android:layout_height="match_parent"
                 android:layout_span="2"
                 android:gravity="center"
                 android:text="Giải 5"
@@ -202,25 +271,29 @@
 
             <TextView
                 android:id="@+id/giaiNam3"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải 5"
                 android:textSize="24sp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow  android:minHeight="45dp">
 
             <TextView
                 android:text=""
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:id="@+id/giaiNam4"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải 5"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/giaiNam5"
+                android:layout_height="match_parent"
                 android:layout_span="2"
                 android:gravity="center"
                 android:text="Giải 5"
@@ -228,25 +301,30 @@
 
             <TextView
                 android:id="@+id/giaiNam6"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải 5"
                 android:textSize="24sp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:background="@color/smoke"
+            android:minHeight="45dp">
 
             <TextView
                 android:text="G.6"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:id="@+id/giaiSau1"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải 6"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/giaiSau2"
+                android:layout_height="match_parent"
                 android:layout_span="2"
                 android:gravity="center"
                 android:text="Giải 6"
@@ -254,42 +332,53 @@
 
             <TextView
                 android:id="@+id/giaiSau3"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải 6"
                 android:textSize="24sp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow  android:minHeight="45dp">
 
             <TextView
                 android:text="G.7"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:layout_gravity="center"
+                android:textColor="@color/primary"/>
 
             <TextView
                 android:id="@+id/giaiBay1"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải 7"
+                android:textColor="@color/primary"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/giaiBay2"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải 7"
+                android:textColor="@color/primary"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/giaiBay3"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải 7"
+                android:textColor="@color/primary"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/giaiBay4"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giải 7"
+                android:textColor="@color/primary"
                 android:textSize="24sp" />
 
         </TableRow>
 
     </TableLayout>
-</RelativeLayout>
+</LinearLayout>

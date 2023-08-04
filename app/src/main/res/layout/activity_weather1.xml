@@ -30,7 +30,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/weatherIcon"
         android:layout_width="181dp"
         android:layout_height="178dp"
         android:layout_marginStart="155dp"
@@ -70,6 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
         android:layout_marginEnd="177dp"
+        android:layout_marginBottom="236dp"
         android:text="29"
         android:textColor="@color/primary"
         android:textSize="80dp"
