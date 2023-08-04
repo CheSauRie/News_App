@@ -33,6 +33,18 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:id="@+id/name_signup"
+                    android:padding="8dp"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/purple"
+                    android:layout_marginTop="40dp"
+                    android:hint="@string/name_signup"
+                    android:background="@drawable/custom_edittext"
+                    android:drawableLeft="@drawable/baseline_person_outline_24"
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:id="@+id/username_signup"
                     android:padding="8dp"
                     android:textColor="@color/black"

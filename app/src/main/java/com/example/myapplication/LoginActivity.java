@@ -1,13 +1,31 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.Models.LoginRequest;
+import com.example.myapplication.Models.LoginResponse;
+import com.example.myapplication.Models.MainWeather;
+import com.example.myapplication.Models.WeatherResponse;
+import com.example.myapplication.Models.WeatherResult;
+import com.example.myapplication.api.ApiService;
+import com.google.gson.Gson;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
     @Override
@@ -19,11 +37,10 @@ public class LoginActivity extends AppCompatActivity {
         EditText password = findViewById(R.id.password);
         Button loginButton = findViewById(R.id.loginButton);
         Button signupButton = findViewById(R.id.signupButtonInLogin);
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
+                CallLoginApi(username.getText().toString(), password.getText().toString());
             }
         });
 
@@ -33,4 +50,30 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    void CallLoginApi(String email, String password) {
+        LoginRequest dataObject = new LoginRequest(email,password);
+        Call<LoginResponse> call = ApiService.retrofit_backend.postLoginData(dataObject);
+
+        call.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if (response.isSuccessful()) {
+                    LoginResponse loginResponse = response.body();
+                    assert loginResponse != null;
+                    SharedPreferences preferences = getSharedPreferences("Auth", MODE_PRIVATE);
+                    preferences.edit().putString("accessToken", loginResponse.getToken()).apply();
+                    startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+                } else {
+                    Log.d("callAPi", "error" + response.code());
+                    Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Log.d("T", "onFailure: " +"failed");
+            }
+        });
+    }
 }
+
