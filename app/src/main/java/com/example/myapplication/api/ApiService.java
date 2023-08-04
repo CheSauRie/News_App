@@ -36,6 +36,13 @@ public interface ApiService {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService.class);
+
+    ApiService retrofit_backend = new Retrofit.Builder()
+            .baseUrl("https://25bc-42-119-181-197.ngrok-free.app")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiService.class);
+
     @GET("api/v1/")
     Call<LoteryResponse> callLoteryResponse();
     @GET("data/2.5/weather")
