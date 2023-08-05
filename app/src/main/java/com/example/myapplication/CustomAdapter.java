@@ -57,7 +57,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
                 Picasso.get().load(b).into(holder.img_headline);
             }
         } else if (results.get(position).getImage_url() == null) {
-            Log.d("abc", results.get(position).getLink());
             ApiService.retrofit_crawl_news.crawlNewsData(results.get(position).getLink())
                     .enqueue(new Callback<CrawlNewsData>() {
                         @Override
