@@ -7,6 +7,9 @@ import android.widget.Toast;
 import com.example.myapplication.Models.LoteryResponse;
 import com.example.myapplication.Models.NewsApiResponse;
 import com.example.myapplication.Models.NewsData;
+import com.example.myapplication.api.ApiService;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,6 +57,28 @@ public class RequestManager {
         }
     }
 
+    public void getFavoriteNewsData(OnFetchDataListener listener, String accessToken) {
+        Call<NewsData> call = ApiService.retrofit_backend.getFavoriteNews(accessToken);
+        try {
+            call.enqueue(new Callback<NewsData>() {
+                @Override
+                public void onResponse(Call<NewsData> call, Response<NewsData> response) {
+                    if (!response.isSuccessful()) {
+                        Toast.makeText(context, "Error!!", Toast.LENGTH_SHORT).show();
+                    }
+                    listener.onFetchData(response.body().getResults(), response.message());
+                }
+
+                @Override
+                public void onFailure(Call<NewsData> call, Throwable t) {
+                    listener.onError("Request Failed: " + t);
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void getNewsData(OnFetchDataListener listener, String query, String category, String domain) {
         CallNewsApi callNewsApi = retrofit_2.create(CallNewsApi.class);
         Call<NewsData> call = callNewsApi.callNewsData("pub_264113e6eaea74f92b9c4d6c028cc36034a5a", "vi", query, category, domain );
@@ -76,8 +101,6 @@ public class RequestManager {
             e.printStackTrace();
         }
     }
-
-
 
     public RequestManager(Context context) {
         this.context = context;
