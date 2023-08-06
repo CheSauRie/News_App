@@ -68,15 +68,28 @@
 
                     </TextView>
 
-                    <Button
-                        android:id="@+id/textToSpeech"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/gradient"
-                        android:text="Đọc báo"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        app:backgroundTint="@null"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <Button
+                            android:id="@+id/textToSpeech"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/gradient"
+                            android:text="Đọc báo"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            app:backgroundTint="@null"/>
+                        <Button
+                            android:id="@+id/favoriteNews"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/gradient"
+                            android:text="yêu thích"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            app:backgroundTint="@null"/>
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/text_detail_detail"
@@ -86,7 +99,7 @@
                         android:justificationMode="inter_word"
                         android:padding="10dp"
                         android:textColor="@color/black"
-                        android:textSize="22sp"></TextView>
+                        android:textSize="22sp" />
 
                     <TextView
                         android:id="@+id/text_detail_content"
@@ -98,7 +111,7 @@
                         android:padding="10dp"
                         android:scrollbars="vertical"
                         android:textColor="@color/black"
-                        android:textSize="20sp"></TextView>
+                        android:textSize="20sp" />
                 </LinearLayout>
         </androidx.cardview.widget.CardView>
 

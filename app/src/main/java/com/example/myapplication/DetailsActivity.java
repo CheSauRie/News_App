@@ -2,21 +2,20 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.Models.CrawlNewsData;
-import com.example.myapplication.Models.LoteryResponse;
-import com.example.myapplication.Models.NewsHeadLines;
+import com.example.myapplication.Models.FavoriteNewsResponse;
 import com.example.myapplication.Models.Result;
 import com.example.myapplication.Models.TtsResponse;
 import com.example.myapplication.api.ApiService;
@@ -31,7 +30,7 @@ import retrofit2.Response;
 public class DetailsActivity extends AppCompatActivity {
     Result results;
     TextView text_title, text_author, text_time, text_detail, text_content;
-    Button ttsButton;
+    Button ttsButton,favoriteButton;
     ImageView img_news;
     WebView webView;
     ProgressBar loader;
@@ -51,6 +50,7 @@ public class DetailsActivity extends AppCompatActivity {
         text_content = findViewById(R.id.text_detail_content);
         img_news = findViewById(R.id.img_detail_news);
         ttsButton = findViewById(R.id.textToSpeech);
+        favoriteButton = findViewById(R.id.favoriteNews);
 
         results = (Result) getIntent().getSerializableExtra("data");
 
@@ -78,6 +78,19 @@ public class DetailsActivity extends AppCompatActivity {
 
         text_content.setText(results.getContent());
         String contentTts = results.getContent();
+
+        favoriteButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                SharedPreferences preferences = getSharedPreferences("Auth", MODE_PRIVATE);
+                String accessToken = preferences.getString("accessToken","");
+                if (accessToken.equals("")) {
+                    Toast.makeText(DetailsActivity.this, "Please login to add your favorite news", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                postFavoriteNews(results, accessToken);
+            }
+        });
         ttsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,7 +113,6 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
         callApiTts(contentTts);
-
     }
 
     private void callApiImg(String url) {
@@ -175,5 +187,27 @@ public class DetailsActivity extends AppCompatActivity {
             mediaPlayer = null;
             isTtsUrlReady = false;
         }
+    }
+
+    void postFavoriteNews(Result data, String accessToken) {
+        Call<FavoriteNewsResponse> call = ApiService.retrofit_backend.postFavoriteNewsData(accessToken,data);
+        call.enqueue(new Callback<FavoriteNewsResponse>() {
+            @Override
+            public void onResponse(Call<FavoriteNewsResponse> call, Response<FavoriteNewsResponse> response) {
+                if (response.isSuccessful()) {
+                    FavoriteNewsResponse signupResponse = response.body();
+                    assert signupResponse != null;
+                    Toast.makeText(DetailsActivity.this, "Add to favorite news successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.d("callAPi123", "error asd" + response.message());
+                    Toast.makeText(DetailsActivity.this, "error", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FavoriteNewsResponse> call, Throwable t) {
+                Log.d("T", "onFailure: " +"failed" + t.getMessage());
+            }
+        });
     }
 }

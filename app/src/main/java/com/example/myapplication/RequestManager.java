@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.myapplication.Models.FavoriteNewsResponse;
 import com.example.myapplication.Models.LoteryResponse;
 import com.example.myapplication.Models.NewsApiResponse;
 import com.example.myapplication.Models.NewsData;
@@ -58,19 +59,24 @@ public class RequestManager {
     }
 
     public void getFavoriteNewsData(OnFetchDataListener listener, String accessToken) {
-        Call<NewsData> call = ApiService.retrofit_backend.getFavoriteNews(accessToken);
+        accessToken = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2FuMTIzQGdtYWlsLmNvbSIsImlhdCI6MTY5MTMxMTIyMiwiZXhwIjoxNjkxMzk3NjIyfQ.emT14kWr4CK5-sRpliGoADDSXDaeiwu33IahyxQNpIs";
+        Call<FavoriteNewsResponse> call = ApiService.retrofit_backend.getFavoriteNews(accessToken);
+        Log.d("accesstokenm", accessToken);
         try {
-            call.enqueue(new Callback<NewsData>() {
+            call.enqueue(new Callback<FavoriteNewsResponse>() {
                 @Override
-                public void onResponse(Call<NewsData> call, Response<NewsData> response) {
+                public void onResponse(Call<FavoriteNewsResponse> call, Response<FavoriteNewsResponse> response) {
+                    Log.d("asdasdasdasd", String.valueOf(response.code()));
                     if (!response.isSuccessful()) {
                         Toast.makeText(context, "Error!!", Toast.LENGTH_SHORT).show();
+                        return;
                     }
-                    listener.onFetchData(response.body().getResults(), response.message());
+                    listener.onFetchData(response.body().getData(), response.message());
                 }
 
                 @Override
-                public void onFailure(Call<NewsData> call, Throwable t) {
+                public void onFailure(Call<FavoriteNewsResponse> call, Throwable t) {
+                    Log.d("error api", t.toString());
                     listener.onError("Request Failed: " + t);
                 }
             });
