@@ -60,14 +60,15 @@
                     />
 
                 <Button
+                    android:id="@+id/loginButton"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:id="@+id/loginButton"
+                    android:layout_marginTop="30dp"
+                    android:shadowRadius="@integer/material_motion_duration_long_1"
                     android:text="@string/login"
                     android:textSize="18sp"
-                    android:layout_marginTop="30dp"
-                    android:backgroundTint="@color/purple"
-                    android:shadowRadius="@integer/material_motion_duration_long_1"/>
+                    android:background="@drawable/gradient"
+                    app:backgroundTint="@null"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -78,7 +79,7 @@
             android:text="@string/not_yet_registered"
             android:textSize="14sp"
             android:textAlignment="center"
-            android:textColor="@color/purple"
+            android:textColor="@color/primary"
             android:id="@+id/signupText"/>
 
         <Button
@@ -89,8 +90,9 @@
             android:textSize="18sp"
             android:layout_marginLeft="54dp"
             android:layout_marginRight="54dp"
-            android:backgroundTint="@color/purple"
-            android:shadowRadius="@integer/material_motion_duration_long_1"/>
+            android:shadowRadius="@integer/material_motion_duration_long_1"
+            android:background="@drawable/gradient"
+            app:backgroundTint="@null"/>
     </LinearLayout>
 
 
