@@ -116,7 +116,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void callApiImg(String url) {
-        ApiService.retrofit_crawl_news.crawlNewsData(url)
+        ApiService.retrofit_backend.crawlNewsData(url)
                 .enqueue(new Callback<CrawlNewsData>() {
                     @Override
                     public void onResponse(Call<CrawlNewsData> call, Response<CrawlNewsData> response) {

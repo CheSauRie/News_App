@@ -13,19 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.Models.LoginRequest;
 import com.example.myapplication.Models.LoginResponse;
-import com.example.myapplication.Models.MainWeather;
-import com.example.myapplication.Models.WeatherResponse;
-import com.example.myapplication.Models.WeatherResult;
 import com.example.myapplication.api.ApiService;
-import com.google.gson.Gson;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
     @Override
@@ -57,16 +49,16 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                if (response.isSuccessful()) {
-                    LoginResponse loginResponse = response.body();
-                    assert loginResponse != null;
-                    SharedPreferences preferences = getSharedPreferences("Auth", MODE_PRIVATE);
-                    preferences.edit().putString("accessToken", loginResponse.getToken()).apply();
-                    startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
-                } else {
+                if (!response.isSuccessful()) {
                     Log.d("callAPi", "error" + response.code());
                     Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                LoginResponse loginResponse = response.body();
+                assert loginResponse != null;
+                SharedPreferences preferences = getSharedPreferences("Auth", MODE_PRIVATE);
+                preferences.edit().putString("accessToken", "Bearer " + loginResponse.getToken()).apply();
+                startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
             }
 
             @Override

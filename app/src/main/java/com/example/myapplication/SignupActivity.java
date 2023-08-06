@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,18 +10,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.Models.LoginRequest;
-import com.example.myapplication.Models.LoginResponse;
 import com.example.myapplication.Models.SignupRequest;
 import com.example.myapplication.Models.SignupResponse;
 import com.example.myapplication.api.ApiService;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignupActivity extends AppCompatActivity {
     EditText name;
@@ -59,15 +53,15 @@ public class SignupActivity extends AppCompatActivity {
         call.enqueue(new Callback<SignupResponse>() {
             @Override
             public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
-                if (response.isSuccessful()) {
-                    SignupResponse signupResponse = response.body();
-                    assert signupResponse != null;
-                    Toast.makeText(SignupActivity.this, "Register successfully", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-                } else {
+                if (!response.isSuccessful()) {
                     Log.d("callAPi", "error" + response.code());
                     Toast.makeText(SignupActivity.this, "error", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                SignupResponse signupResponse = response.body();
+                assert signupResponse != null;
+                Toast.makeText(SignupActivity.this, "Register successfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
             }
 
             @Override
