@@ -4,12 +4,13 @@ import com.example.myapplication.Models.CrawlNewsData;
 import com.example.myapplication.Models.LoginRequest;
 import com.example.myapplication.Models.LoginResponse;
 import com.example.myapplication.Models.LoteryResponse;
-import com.example.myapplication.Models.MainWeather;
+import com.example.myapplication.Models.NewsData;
 import com.example.myapplication.Models.SignupRequest;
 import com.example.myapplication.Models.SignupResponse;
-import com.example.myapplication.Models.TextRequestBody;
 import com.example.myapplication.Models.TtsResponse;
 import com.example.myapplication.Models.WeatherResponse;
+
+import java.util.List;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -17,6 +18,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -36,7 +38,6 @@ public interface ApiService {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService.class);
-
     ApiService retrofit_backend = new Retrofit.Builder()
             .baseUrl("https://25bc-42-119-181-197.ngrok-free.app")
             .addConverterFactory(GsonConverterFactory.create())
@@ -58,6 +59,10 @@ public interface ApiService {
     @POST("auth/register")
     Call<SignupResponse> postSignupData(
             @Body SignupRequest signupRequest
+    );
+    @GET("favorite/get-all")
+    Call<NewsData> getFavoriteNews(
+            @Header("Authorization") String authToken
     );
     @POST("hmi/tts/v5")
     Call<TtsResponse> postTextToSpeech(

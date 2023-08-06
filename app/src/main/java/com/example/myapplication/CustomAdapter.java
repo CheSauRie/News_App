@@ -62,28 +62,28 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
                         @Override
                         public void onResponse(Call<CrawlNewsData> call, Response<CrawlNewsData> response) {
                             Log.d("CustomAdapter", "onBindViewHolder: " + "Dda vao day vao on Respone");
-                            if (response.isSuccessful()) {
-                                CrawlNewsData crawlNewsData = response.body();
-                                if (crawlNewsData != null) {
-                                    if (response.body().getImageUrl().get(0) != null) {
-                                        if (response.body().getImageUrl().get(0).contains("http://") || response.body().getImageUrl().get(0).contains("https://")) {
-                                            Picasso.get()
-                                                    .load(response.body().getImageUrl().get(0))
-                                                    .placeholder(R.drawable.un_available)
-                                                    .error(R.drawable.un_available)
-                                                    .into(holder.img_headline);
-                                        } else {
-                                            String b = "http:" + response.body().getImageUrl().get(0);
-                                            Picasso.get().load(b).into(holder.img_headline);
-                                        }
-                                    }
-                                    Log.d("CustomAdapter", "onResponse: " + response.body().toString());
-                                } else {
-                                    Log.d("CustomAdapter", "Response body is null");
-                                }
-                            } else {
+                            if (!response.isSuccessful()) {
                                 Log.d("DetailsActivity", "Response not successful: " + response.code());
+                                return;
                             }
+                            CrawlNewsData crawlNewsData = response.body();
+                            if (crawlNewsData == null) {
+                                Log.d("CustomAdapter", "Response body is null");
+                                return;
+                            }
+                            if (response.body().getImageUrl().get(0) == null) {
+                                String b = "http:" + response.body().getImageUrl().get(0);
+                                Picasso.get().load(b).into(holder.img_headline);
+                                return;
+                            }
+                            if (response.body().getImageUrl().get(0).contains("http://") || response.body().getImageUrl().get(0).contains("https://")) {
+                                Picasso.get()
+                                        .load(response.body().getImageUrl().get(0))
+                                        .placeholder(R.drawable.un_available)
+                                        .error(R.drawable.un_available)
+                                        .into(holder.img_headline);
+                            }
+                            Log.d("CustomAdapter", "onResponse: " + response.body().toString());
                         }
 
                         @Override
