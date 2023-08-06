@@ -3,12 +3,14 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.Models.MainWeather;
+import com.example.myapplication.Models.Weather;
 import com.example.myapplication.Models.WeatherResponse;
 import com.example.myapplication.Models.WeatherResult;
 import com.example.myapplication.api.ApiService;
@@ -24,7 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import com.squareup.picasso.Picasso;
 
 public class WeatherActivity extends AppCompatActivity {
-
+    ProgressDialog dialog;
     TextView tvTemp;
     TextView tvStatus;
     TextView tvCityName;
@@ -47,7 +49,11 @@ public class WeatherActivity extends AppCompatActivity {
         tvHumidity = findViewById(R.id.humidity);
         tvAtm = findViewById(R.id.atm);
         ivWeatherIcon = findViewById(R.id.weatherIcon);
+        dialog = new ProgressDialog(this);
+        dialog.setTitle("Đang cập nhật thời tiết");
+        dialog.show();
         fetchWeather("Hanoi");
+        //tvTemp.setText(String.valueOf(weather.getCurrentTemp()));
     }
 
     void fetchWeather(String cityname) {
@@ -103,7 +109,7 @@ public class WeatherActivity extends AppCompatActivity {
                             "%");
                     tvAtm.setText(mainWeather.getPressure() + " atm");
                     String imgURL = "https://openweathermap.org/img/wn/" +
-                            weatherActivity.get(0).getIcon() + "@2x.png";
+                            weatherActivity.get(0).getIcon() + "@4x.png";
                     Picasso.get().load(imgURL).placeholder(R.drawable.sun_cloud)
                             .error(R.drawable.sun_cloud).
                     into(ivWeatherIcon, new com.squareup.picasso.Callback() {
@@ -118,8 +124,9 @@ public class WeatherActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     });
+                    dialog.dismiss();
                 } else {
-                    Log.d("LottoActivity", "Response not successful: " + response.code());
+                    Log.d("WeatherActivity", "Response not successful: " + response.code());
                 }
             }
 

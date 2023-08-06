@@ -11,11 +11,11 @@
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="665dp">
+        android:layout_height="700dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="774dp"
+            android:layout_height="730dp"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
@@ -150,17 +150,18 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_main"
                 android:layout_width="match_parent"
-                android:layout_height="486dp"
+                android:layout_height="500dp"
                 android:layout_margin="8dp">
 
             </androidx.recyclerview.widget.RecyclerView>
+
         </LinearLayout>
 
     </FrameLayout>
 
     <include
         layout="@layout/bottom_nav"
-        android:layout_width="389dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="visible" />

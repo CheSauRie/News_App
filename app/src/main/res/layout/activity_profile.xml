@@ -10,7 +10,7 @@
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="669dp"
+        android:layout_height="701dp"
         android:background="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -158,9 +158,9 @@
 
     <include
         layout="@layout/bottom_nav"
-        android:layout_width="389dp"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:visibility="visible" />
 
 </LinearLayout>

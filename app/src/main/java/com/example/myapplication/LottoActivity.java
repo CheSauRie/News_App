@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -18,7 +19,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LottoActivity extends AppCompatActivity {
-
+    ProgressDialog dialog;
     TextView giaiDB, giaiNhat, giaiNhi1, giaiNhi2, giaiBa1, giaiBa2, giaiBa3, giaiBa4, giaiBa5, giaiBa6,
             giaiBon1, giaiBon2, giaiBon3, giaiBon4, giaiNam1,giaiNam2,giaiNam3,giaiNam4,giaiNam5,giaiNam6,
             giaiSau1, giaiSau2, giaiSau3, giaiBay1, giaiBay2, giaiBay3, giaiBay4, date;
@@ -28,6 +29,9 @@ public class LottoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lotto);
+        dialog = new ProgressDialog(this);
+        dialog.setTitle("Đang tải kết quả");
+        dialog.show();
         callApi();
         date = findViewById(R.id.ngayXoso);
         giaiNhat = findViewById(R.id.giaiNhat);
@@ -122,7 +126,7 @@ public class LottoActivity extends AppCompatActivity {
                         giaiBay2.setText(g7_1);
                         giaiBay3.setText(g7_2);
                         giaiBay4.setText(g7_3);
-
+                        dialog.dismiss();
                     } else {
                         Log.d("LottoActivity", "Response body is null");
                     }
