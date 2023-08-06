@@ -13,6 +13,7 @@ import android.util.Log;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.myapplication.Models.FavoriteNewsResponse;
 import com.example.myapplication.Models.NewsData;
 import com.example.myapplication.Models.Result;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -52,15 +53,15 @@ public class FavoriteActivity extends AppCompatActivity implements SelectListene
 
         SharedPreferences preferences = getSharedPreferences("Auth", MODE_PRIVATE);
         String accessToken = preferences.getString("accessToken","");
-        Log.d("ascasc", accessToken);
         if (!accessToken.equals("")) {
             RequestManager manager = new RequestManager(this);
-//        manager.getFavoriteNewsData(listener, accessToken);
-            manager.getNewsData(listener, null, null, "vnexpress,danviet,nhipsongkinhdoanh,datviet,docbao");
+            manager.getFavoriteNewsData(listener, accessToken);
+            dialog.dismiss();
         } else {
             Toast.makeText(FavoriteActivity.this, "Please login to see your favorite news", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         }
+
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.favourite);
@@ -85,7 +86,7 @@ public class FavoriteActivity extends AppCompatActivity implements SelectListene
         });
     }
 
-    private final OnFetchDataListener<NewsData> listener = new OnFetchDataListener<NewsData>() {
+    private final OnFetchDataListener<FavoriteNewsResponse> listener = new OnFetchDataListener<FavoriteNewsResponse>() {
         @Override
         public void onFetchData(List<Result> list, String message) {
             if (list.isEmpty()) {
