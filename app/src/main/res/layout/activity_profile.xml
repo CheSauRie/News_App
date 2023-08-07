@@ -41,7 +41,6 @@
                     android:padding="5dp"
                     android:src="@drawable/quan"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView"
                     app:layout_constraintHorizontal_bias="0.42"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +51,7 @@
                     tools:ignore="MissingConstraints" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/name_profile"
                     android:layout_width="98dp"
                     android:layout_height="27dp"
                     android:layout_marginTop="24dp"
