@@ -6,8 +6,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ProfileActivity"
-    android:background="@color/dimgray">
+    android:background="@color/white">
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/header"
+        android:gravity="center">
 
+        <TextView
+            android:id="@+id/cityName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Gía vàng"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
@@ -29,6 +45,7 @@
                 android:layout_gravity="start"
                 app:cardBackgroundColor="@color/gray"
                 android:background="@color/white">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -37,9 +54,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="SJC 1-10 lượng"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:padding="10dp"
-                        android:background="@color/yellow"
+                        android:background="@drawable/header"
                         android:textStyle="bold"
                         />
                     <LinearLayout
@@ -51,6 +68,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
+                            android:background="@color/white"
                             android:layout_weight="1"
                             android:orientation="vertical"
                             >
@@ -58,17 +76,18 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Mua"
-                                android:textColor="#A0A0A0"/>
+                                android:textColor="@color/black"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="66.650.000"
-                                android:textColor="@color/yellow"/>
+                                android:textColor="@color/black"/>
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
+                            android:background="@color/white"
                             android:orientation="vertical"
                             android:layout_weight="1"
                             >
@@ -76,20 +95,21 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Bán"
-                                android:textColor="#A0A0A0"/>
+                                android:textColor="@color/black"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="67.650.000"
-                                android:textColor="@color/yellow"/>
+                                android:textColor="@color/black"/>
                         </LinearLayout>
                     </LinearLayout>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
+                        android:background="@color/white"
                         android:text="Cập nhật: 07:52 26/07/2023"
-                        android:textColor="#A0A0A0"/>
+                        android:textColor="@color/primary"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -107,13 +127,13 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="20dp"
                 android:layout_gravity="start"
-                app:cardBackgroundColor="@color/gray"
                 android:background="@color/white">
                 <TableLayout android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     xmlns:android="http://schemas.android.com/apk/res/android">
                     <TableRow
                         android:padding="10dp"
+                        android:background="@drawable/header"
                         >
                         <TextView
                             android:layout_width="match_parent"
@@ -151,19 +171,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Loại"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="2"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Mua"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="1"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Bán"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="1"/>
                     </TableRow>
                     <TableRow
@@ -173,19 +193,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="SJC 1-10 lượng"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="2"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="66.650.000"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="1"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="67.650.000"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="1"/>
                     </TableRow>
                     <TableRow
@@ -195,19 +215,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="SJC 5 chỉ"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="2"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="66.650.000"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="1"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="67.650.000"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="1"/>
                     </TableRow>
                     <TableRow
@@ -217,19 +237,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="SJC 0.5, 1, 2 chỉ"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="2"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="66.650.000"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="1"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="67.650.000"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="1"/>
                     </TableRow>
                     <TableRow
@@ -239,19 +259,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Nhẫn 99,99 1, 2, 5 chỉ"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="2"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="66.650.000"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="1"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="67.650.000"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="1"/>
                     </TableRow>
                     <TableRow
@@ -261,19 +281,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Nữ trang 99,99%"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="2"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="66.650.000"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="1"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="67.650.000"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="1"/>
                     </TableRow>
                     <TableRow
@@ -283,19 +303,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Nữ trang 99%"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="2"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="66.650.000"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="1"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="67.650.000"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:layout_weight="1"/>
                     </TableRow>
                     <TableRow
@@ -304,7 +324,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Cập nhật: 07:52 26/07/2023"
-                            android:textColor="#A0A0A0"/>
+                            android:textColor="@color/primary"/>
                     </TableRow>
                 </TableLayout>
             </androidx.cardview.widget.CardView>
