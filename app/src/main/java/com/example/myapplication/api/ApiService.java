@@ -4,7 +4,6 @@ import com.example.myapplication.Models.CrawlNewsData;
 import com.example.myapplication.Models.LoginRequest;
 import com.example.myapplication.Models.LoginResponse;
 import com.example.myapplication.Models.LoteryResponse;
-import com.example.myapplication.Models.NewsData;
 import com.example.myapplication.Models.FavoriteNewsResponse;
 import com.example.myapplication.Models.Result;
 import com.example.myapplication.Models.SignupRequest;
@@ -32,13 +31,8 @@ public interface ApiService {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService.class);
-    ApiService retrofit_crawl_news = new Retrofit.Builder() //192.168.232.2
-            .baseUrl("http://192.168.232.2:8085/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiService.class);
-    ApiService retrofit_backend = new Retrofit.Builder()
-            .baseUrl("https://1bcb-58-186-128-175.ngrok-free.app/")
+    ApiService retrofit_backend = new Retrofit.Builder() //192.168.232.2
+            .baseUrl("https://52c1-58-186-128-175.ngrok-free.app/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService.class);

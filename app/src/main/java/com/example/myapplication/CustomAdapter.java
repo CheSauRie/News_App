@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Models.CrawlNewsData;
 import com.example.myapplication.Models.Result;
-import com.example.myapplication.Models.TtsResponse;
 import com.example.myapplication.api.ApiService;
 import com.squareup.picasso.Picasso;
 
@@ -57,7 +56,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
                 Picasso.get().load(b).into(holder.img_headline);
             }
         } else if (results.get(position).getImage_url() == null) {
-            ApiService.retrofit_crawl_news.crawlNewsData(results.get(position).getLink())
+            ApiService.retrofit_backend.crawlNewsData(results.get(position).getLink())
                     .enqueue(new Callback<CrawlNewsData>() {
                         @Override
                         public void onResponse(Call<CrawlNewsData> call, Response<CrawlNewsData> response) {

@@ -62,7 +62,6 @@ public class FavoriteActivity extends AppCompatActivity implements SelectListene
             dialog.dismiss();
         }
 
-
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.favourite);
 

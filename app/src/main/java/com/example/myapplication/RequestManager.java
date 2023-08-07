@@ -10,8 +10,6 @@ import com.example.myapplication.Models.NewsApiResponse;
 import com.example.myapplication.Models.NewsData;
 import com.example.myapplication.api.ApiService;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -59,14 +57,11 @@ public class RequestManager {
     }
 
     public void getFavoriteNewsData(OnFetchDataListener listener, String accessToken) {
-        accessToken = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2FuMTIzQGdtYWlsLmNvbSIsImlhdCI6MTY5MTMxMTIyMiwiZXhwIjoxNjkxMzk3NjIyfQ.emT14kWr4CK5-sRpliGoADDSXDaeiwu33IahyxQNpIs";
         Call<FavoriteNewsResponse> call = ApiService.retrofit_backend.getFavoriteNews(accessToken);
-        Log.d("accesstokenm", accessToken);
         try {
             call.enqueue(new Callback<FavoriteNewsResponse>() {
                 @Override
                 public void onResponse(Call<FavoriteNewsResponse> call, Response<FavoriteNewsResponse> response) {
-                    Log.d("asdasdasdasd", String.valueOf(response.code()));
                     if (!response.isSuccessful()) {
                         Toast.makeText(context, "Error!!", Toast.LENGTH_SHORT).show();
                         return;
@@ -94,6 +89,7 @@ public class RequestManager {
                 public void onResponse(Call<NewsData> call, Response<NewsData> response) {
                     if (!response.isSuccessful()) {
                         Toast.makeText(context, "Error!!", Toast.LENGTH_SHORT).show();
+                        return;
                     }
                     listener.onFetchData(response.body().getResults(), response.message());
                 }
