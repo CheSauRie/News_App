@@ -78,18 +78,22 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        btn_log_out.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                SharedPreferences preferences = getSharedPreferences("Auth", MODE_PRIVATE);
-                preferences.edit().putString("accessToken", "").apply();
-                startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
-            }
-        });
+        if (btn_log_out != null) {
+            btn_log_out.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    SharedPreferences preferences = getSharedPreferences("Auth", MODE_PRIVATE);
+                    preferences.edit().putString("accessToken", "").apply();
+                    startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                }
+            });
+        }
 
-        btn_log_in.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
-            }
-        });
+        if (btn_log_in != null) {
+            btn_log_in.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                }
+            });
+        }
     }
 }
