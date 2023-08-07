@@ -5,6 +5,7 @@ import com.example.myapplication.Models.LoginRequest;
 import com.example.myapplication.Models.LoginResponse;
 import com.example.myapplication.Models.LoteryResponse;
 import com.example.myapplication.Models.FavoriteNewsResponse;
+import com.example.myapplication.Models.ProfileResponse;
 import com.example.myapplication.Models.Result;
 import com.example.myapplication.Models.SignupRequest;
 import com.example.myapplication.Models.SignupResponse;
@@ -32,7 +33,7 @@ public interface ApiService {
             .build()
             .create(ApiService.class);
     ApiService retrofit_backend = new Retrofit.Builder() //192.168.232.2
-            .baseUrl("https://52c1-58-186-128-175.ngrok-free.app/")
+            .baseUrl("https://8262-118-71-137-37.ngrok-free.app/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService.class);
@@ -61,6 +62,10 @@ public interface ApiService {
     Call<FavoriteNewsResponse> postFavoriteNewsData(
             @Header("Authorization") String authToken,
             @Body Result request
+    );
+    @GET("/user")
+    Call<ProfileResponse> getProfile(
+            @Header("Authorization") String authToken
     );
     @POST("hmi/tts/v5")
     Call<TtsResponse> postTextToSpeech(

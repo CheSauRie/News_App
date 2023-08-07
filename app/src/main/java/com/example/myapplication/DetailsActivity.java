@@ -62,7 +62,6 @@ public class DetailsActivity extends AppCompatActivity {
         if (results.getImage_url() != null) {
             String a = results.getImage_url();
             if (a.contains("http://") || a.contains("https://")) {
-                // Log.d("CustomAdapter", "onBindViewHolder: " + a);
                 Picasso.get()
                         .load(a)
                         .placeholder(R.drawable.un_available)
@@ -154,7 +153,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void callApiTts(String contentTTS) {
-        ApiService.retrofit_tts.postTextToSpeech(contentTTS, "btyG4uVZk4ppdxpKx1zHVR1ms3Z4UTep", "banmai").enqueue(new Callback<TtsResponse>() {
+        ApiService.retrofit_tts.postTextToSpeech(contentTTS, "cOVYvJfzeEJWaS6DyFpaZe5oh45xGE0e", "banmai").enqueue(new Callback<TtsResponse>() {
 
             @Override
             public void onResponse(Call<TtsResponse> call, Response<TtsResponse> response) {
@@ -190,6 +189,11 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     void postFavoriteNews(Result data, String accessToken) {
+        if (data.getContent().length() >300) {
+            data.setContent(data.getContent().substring(0,300));
+
+        }
+        Log.d("asdasd", "call");
         Call<FavoriteNewsResponse> call = ApiService.retrofit_backend.postFavoriteNewsData(accessToken,data);
         call.enqueue(new Callback<FavoriteNewsResponse>() {
             @Override
@@ -199,14 +203,14 @@ public class DetailsActivity extends AppCompatActivity {
                     assert signupResponse != null;
                     Toast.makeText(DetailsActivity.this, "Add to favorite news successfully", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.d("callAPi123", "error asd" + response.message());
+                    Log.d("callAPi123", "error asd" + response.code() + response.message());
                     Toast.makeText(DetailsActivity.this, "error", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<FavoriteNewsResponse> call, Throwable t) {
-                Log.d("T", "onFailure: " +"failed" + t.getMessage());
+                Log.d("error", "onFailure: " +"failed " + call.timeout() + t.getMessage());
             }
         });
     }

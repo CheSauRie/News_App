@@ -9,13 +9,24 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.Models.FavoriteNewsResponse;
 import com.example.myapplication.Models.LoginResponse;
+import com.example.myapplication.Models.ProfileResponse;
+import com.example.myapplication.Models.Result;
+import com.example.myapplication.api.ApiService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class ProfileActivity extends AppCompatActivity {
+import org.w3c.dom.Text;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class ProfileActivity extends AppCompatActivity {
+    TextView name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,11 +34,13 @@ public class ProfileActivity extends AppCompatActivity {
         String token = preferences.getString("accessToken","");
         if(token.equals("")) {
             setContentView(R.layout.activity_profile_unlogged);
-            Log.d("unlogged", token);
         } else {
             setContentView(R.layout.activity_profile);
-            Log.d("logged", token);
+            name = findViewById(R.id.name_profile);
+            getProfile(token);
         }
+
+
         //setContentView(R.layout.activity_profile);
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -95,5 +108,26 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    void getProfile(String accessToken) {
+        Call<ProfileResponse> call = ApiService.retrofit_backend.getProfile(accessToken);
+        call.enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                if (response.isSuccessful()) {
+                    ProfileResponse dataResponse = response.body();
+                    assert dataResponse != null;
+                    name.setText(dataResponse.getName());
+                } else {
+                    Log.d("callAPi123", "error asd" + response.code() + response.message());
+                    Toast.makeText(ProfileActivity.this, "error", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                Log.d("error", "onFailure: " +"failed " + call.timeout() + t.getMessage());
+            }
+        });
     }
 }
