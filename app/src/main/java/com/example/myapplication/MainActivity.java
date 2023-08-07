@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener, V
         public void onFetchData(List<Result> list, String message) {
             if (list.isEmpty()) {
                 Toast.makeText(MainActivity.this, "No Data Found", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
                 return;
             }
             showNews(list);

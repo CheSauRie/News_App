@@ -82,7 +82,7 @@ public class RequestManager {
 
     public void getNewsData(OnFetchDataListener listener, String query, String category, String domain) {
         CallNewsApi callNewsApi = retrofit_2.create(CallNewsApi.class);
-        Call<NewsData> call = callNewsApi.callNewsData("pub_264113e6eaea74f92b9c4d6c028cc36034a5a", "vi", query, category, domain );
+        Call<NewsData> call = callNewsApi.callNewsData("pub_26500db6e972e69973a1a7c6ca72812179d10", "vi", query, category, domain );
         try {
             call.enqueue(new Callback<NewsData>() {
                 @Override
